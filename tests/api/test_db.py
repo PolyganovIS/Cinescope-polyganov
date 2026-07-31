@@ -1,6 +1,5 @@
 import uuid
 from datetime import datetime
-from db_models.user import UserDBModel
 
 
 def test_create_and_find_user_in_db(db):

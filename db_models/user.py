@@ -1,7 +1,8 @@
-from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, String, Boolean, DateTime
+from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
+
 
 class UserDBModel(Base):
     __tablename__ = 'users'
@@ -15,7 +16,6 @@ class UserDBModel(Base):
     verified = Column(Boolean)
     banned = Column(Boolean)
     roles = Column(String)
-
 
     def to_dict(self):
         """Преобразование в словарь"""

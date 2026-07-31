@@ -1,17 +1,14 @@
-from models.user import TestUser
-import requests
-from constants import AUTH_URL, HEADERS, REGISTER_ENDPOINT, LOGIN_ENDPOINT
 import pytest
-from custom_requester.custom_requester import CustomRequester
-from config.base_urls import AUTH_BASE_URL
-from utils.data_generator import DataGenerator
+import requests
+
 from clients.api_manager import ApiManager
-from entities.user import User
-from resources.user_creds import SuperAdminCreds
 from constants.roles import Roles
-from sqlalchemy.orm import Session
 from database.db_client import get_db_session
 from database.db_helpers import DBHelper
+from entities.user import User
+from models.user import TestUser
+from resources.user_creds import SuperAdminCreds
+from utils.data_generator import DataGenerator
 
 
 @pytest.fixture(scope="function")
@@ -24,6 +21,7 @@ def test_user() -> TestUser:
         passwordRepeat=password,
         roles=[Roles.USER]  # Передаем сам Enum Roles.USER
     )
+
 
 @pytest.fixture(scope="session")
 def base_session():
@@ -40,6 +38,7 @@ def unauthenticated_api_manager():
     session = requests.Session()
     yield ApiManager(session)
     session.close()
+
 
 @pytest.fixture(scope="function")
 def registered_user(api_manager, test_user: TestUser) -> TestUser:
@@ -89,12 +88,10 @@ def super_admin_token():
     response = api.auth_api.login_user({
         "email": SuperAdminCreds.USERNAME,
         "password": SuperAdminCreds.PASSWORD
-        }).json()
+    }).json()
     token = response["accessToken"]
     yield token
     session.close()
-
-
 
 
 @pytest.fixture
@@ -156,6 +153,3 @@ def db_session():
 @pytest.fixture(scope="module")
 def db(db_session) -> DBHelper:
     return DBHelper(db_session)
-
-
-

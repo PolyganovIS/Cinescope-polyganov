@@ -1,6 +1,6 @@
 import allure
 import pytest
-import requests
+
 from models.movies import MoviesListResponse, MovieItem
 from utils.data_generator import DataGenerator
 
@@ -83,7 +83,8 @@ class TestMoviesApi:
         with allure.step(f"Получение фикстуры пользователя '{user_fixture}'"):
             user = request.getfixturevalue(user_fixture)
 
-        with allure.step(f"Попытка удаления фильма ID={movie_id} ролью {user_fixture} (ожидается статус {expected_status})"):
+        with allure.step(
+                f"Попытка удаления фильма ID={movie_id} ролью {user_fixture} (ожидается статус {expected_status})"):
             user.api.movies_api.delete_movie(movie_id, expected_status=expected_status)
 
         if expected_status == 403:

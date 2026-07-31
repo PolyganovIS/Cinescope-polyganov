@@ -1,4 +1,5 @@
 from typing import Optional, List
+
 from pydantic import BaseModel, Field, ConfigDict
 
 
@@ -18,7 +19,8 @@ class MovieItem(BaseModel):
     published: Optional[bool] = Field(default=True, description="Опубликован ли фильм")
     rating: Optional[float] = Field(default=0.0, description="Рейтинг фильма")
     genre_id: Optional[int] = Field(default=None, alias="genreId", description="ID жанра фильма")
-    created_at: Optional[str] = Field(default=None, alias="createdAt", description="Дата и время создания фильма в ISO формате")
+    created_at: Optional[str] = Field(default=None, alias="createdAt",
+                                      description="Дата и время создания фильма в ISO формате")
 
 
 class MoviesListResponse(BaseModel):

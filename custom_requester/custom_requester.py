@@ -1,8 +1,10 @@
-from pydantic import BaseModel
-import time
 import json
 import logging
 import os
+import time
+
+from pydantic import BaseModel
+
 
 class CustomRequester:
     base_headers = {
@@ -50,7 +52,6 @@ class CustomRequester:
     def _reset_headers(self):
         self.session.headers.pop("Authorization", None)
         self.headers = self.base_headers.copy()
-
 
     def log_request_and_response(self, response, duration=None):
         try:

@@ -1,5 +1,6 @@
 # Модель для счетов транзакций
 from sqlalchemy import Column, Integer, String
+
 from db_models.user import Base
 
 

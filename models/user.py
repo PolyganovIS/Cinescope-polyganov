@@ -1,7 +1,9 @@
 import datetime
-from pydantic import BaseModel, field_validator, Field
-from constants.roles import Roles
 from typing import Optional
+
+from pydantic import BaseModel, field_validator, Field
+
+from constants.roles import Roles
 
 
 class UserRegistration(BaseModel):
@@ -20,14 +22,12 @@ class UserRegistration(BaseModel):
 
         return value
 
-
     @field_validator("password")
     def check_password(cls, value: str) -> str:
         if len(value) < 8:
             raise ValueError("Минимальная длинна пароля 8 символов")
 
         return value
-
 
 
 class TestUser(BaseModel):
@@ -50,7 +50,6 @@ class TestUser(BaseModel):
         json_encoders = {
             Roles: lambda v: v.value
         }
-
 
 
 class RegisterUserResponse(BaseModel):

@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean, Float, DateTime
+
 from db_models.user import Base
 
 
@@ -29,6 +30,5 @@ class MovieDBModel(Base):
             'created_at': self.created_at
         }
 
-
-    def __repr__ (self):
+    def __repr__(self):
         return f"<Movie(id={self.id}, name='{self.name}')>"

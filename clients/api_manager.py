@@ -1,6 +1,6 @@
 from clients.auth_api import AuthApi
-from clients.user_api import UserApi
 from clients.movies_api import MoviesApi
+from clients.user_api import UserApi
 
 
 class ApiManager:
@@ -12,4 +12,3 @@ class ApiManager:
 
     def close_session(self):
         self.session.close()
-        

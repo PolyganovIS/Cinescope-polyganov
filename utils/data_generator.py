@@ -1,7 +1,10 @@
 import random
 import string
+
 from faker import Faker
+
 faker = Faker()
+
 
 class DataGenerator:
     @staticmethod
@@ -15,7 +18,7 @@ class DataGenerator:
 
     @staticmethod
     def generate_random_int(length=10):
-        return random.randint(10**(length-1), (10**length)-1)
+        return random.randint(10 ** (length - 1), (10 ** length) - 1)
 
     @staticmethod
     def generate_random_password():
@@ -41,11 +44,3 @@ class DataGenerator:
             "published": True,
             "genreId": random.randint(4, 10)
         }
-
-
-
-
-
-
-
-
